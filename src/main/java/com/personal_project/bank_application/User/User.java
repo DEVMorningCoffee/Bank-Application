@@ -1,65 +1,42 @@
 package com.personal_project.bank_application.User;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "users")
 public class User {
-    public String firstName;
-    public String lastName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long ID;
-    public double savingBalance;
-    public double checkingBalance;
-    public long BankID;
 
-    public User() {};
+    @Column(name = "first_name", nullable = false)
+    public String firstName;
 
+    @Column(name="last_name", nullable = false  )
+    public String lastName;
 
-    // Include all the User class attribute
-    public User(String firstName, String lastName, long ID, double savingBalance, double checkingBalance, long BankID) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ID = ID;
-        this.savingBalance = savingBalance;
-        this.checkingBalance = checkingBalance;
-        this.BankID = BankID;
-    }
+    @Column(name = "saving_balance")
+    public double savingBalance = 3000.25;
 
+    @Column(name = "checking_balance")
+    public double checkingBalance = 1000.87;
+
+    @Column(name="bank_id")
+    public int bankID;
 
     // Remove ID to create randomize User with unique ID
-    public User(String firstName, String lastName, double savingBalance, double checkingBalance, long BankID) {
+    public User(String firstName, String lastName, int BankID) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.savingBalance = savingBalance;
-        this.checkingBalance = checkingBalance;
-        this.BankID = BankID;
+        this.bankID = BankID;
 
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public double getSavingBalance() {
-        return savingBalance;
-    }
-
-    public double getCheckingBalance() {
-        return checkingBalance;
-    }
-
-    public double setSavingBalance(double savingBalance) {
-        this.savingBalance = savingBalance;
-        return this.savingBalance;
-    }
-
-    public double setCheckingBalance(double checkingBalance) {
-        this.checkingBalance = checkingBalance;
-        return this.checkingBalance;
     }
 }
