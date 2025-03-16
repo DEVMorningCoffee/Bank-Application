@@ -24,8 +24,10 @@ public class UserController {
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<UserDTO> signup(@RequestBody UserDTO userDTO) {
+
        UserDTO saveUser = userService.createUser(userDTO);
        return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
+
     }
 
 }

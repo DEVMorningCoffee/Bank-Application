@@ -1,6 +1,8 @@
 package com.personal_project.bank_application.Service.Impl;
 
 import com.personal_project.bank_application.DTO.UserDTO;
+import com.personal_project.bank_application.Exceptions.CustomException;
+import com.personal_project.bank_application.Exceptions.Handler.ExceptionHandler;
 import com.personal_project.bank_application.Mapper.UserMapper;
 import com.personal_project.bank_application.Repo.UserRepo;
 import com.personal_project.bank_application.Service.UserService;
@@ -15,6 +17,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
+        // Make firstName and lastname required
+        if(userDTO.getFirstName() == null || userDTO.getLastName() == null){
+            throw new CustomException("First and last name are required");
+        }
 
         User user = UserMapper.maptoUser(userDTO);
         User newUser = userRepo.save(user);
