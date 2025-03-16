@@ -1,7 +1,6 @@
-package com.personal_project.bank_application.User;
+package com.personal_project.bank_application.Controller;
 
 import com.personal_project.bank_application.DTO.UserDTO;
-import com.personal_project.bank_application.Service.Impl.UserServiceImpl;
 import com.personal_project.bank_application.Service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
