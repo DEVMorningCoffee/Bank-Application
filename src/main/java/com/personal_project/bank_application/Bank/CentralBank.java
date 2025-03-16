@@ -2,7 +2,7 @@ package com.personal_project.bank_application.Bank;
 
 public class CentralBank {
     public String name;
-    public long ID;
+    public int ID;
     public double balance;
 
     public CentralBank() {};
