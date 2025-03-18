@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 @ControllerAdvice
 public class ExceptionHandler {
@@ -19,5 +17,12 @@ public class ExceptionHandler {
         ExceptionDetails exceptionDetails = new ExceptionDetails(ex.getMessage(), HttpStatus.BAD_REQUEST, ZonedDateTime.now());
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = { CustomException.class })
+    public ResponseEntity<Object> notFoundException(CustomException ex) {
+        ExceptionDetails exceptionDetails = new ExceptionDetails(ex.getMessage(), HttpStatus.NOT_FOUND, ZonedDateTime.now());
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
 }

@@ -7,10 +7,10 @@ public class UserMapper {
 
     public static UserDTO mapToUserDTO(User user){
         return new UserDTO(user.getFirstName(), user.getLastName(),
-                user.getBankID());
+                user.getBankID(), user.getEmail());
     }
 
     public static User maptoUser(UserDTO userDTO){
-        return new User(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getBankID());
+        return new User(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getBankID(), userDTO.getEmail());
     }
 }

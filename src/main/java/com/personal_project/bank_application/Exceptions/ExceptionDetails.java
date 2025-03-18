@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +14,4 @@ public class ExceptionDetails {
     private String message;
     private HttpStatus httpStatus;
     private ZonedDateTime zonedDateTime;
-
-
 }

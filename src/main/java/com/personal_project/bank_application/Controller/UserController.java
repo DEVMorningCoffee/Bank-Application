@@ -26,7 +26,6 @@ public class UserController {
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<User> signin(@RequestBody EmailDTO emailDTO) {
-        System.out.println(emailDTO.getEmail());
         String email = emailDTO.getEmail();
 
         User findUser = userService.findUser(email);
