@@ -20,6 +20,9 @@ public class User {
     @Column(name = "first_name", nullable = false)
     public String firstName;
 
+    @Column(name="email", nullable = false, unique = true)
+    public String email;
+
     @Column(name="last_name", nullable = false  )
     public String lastName;
 
@@ -33,10 +36,11 @@ public class User {
     public int bankID;
 
     // Remove ID to create randomize User with unique ID
-    public User(String firstName, String lastName, int BankID) {
+    public User(String firstName, String lastName, int BankID, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bankID = BankID;
+        this.email = email;
 
     }
 }
