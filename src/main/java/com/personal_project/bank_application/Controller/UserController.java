@@ -1,7 +1,9 @@
 package com.personal_project.bank_application.Controller;
 
+import com.personal_project.bank_application.DTO.EmailDTO;
 import com.personal_project.bank_application.DTO.UserDTO;
 import com.personal_project.bank_application.Service.UserService;
+import com.personal_project.bank_application.User.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,18 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping(value = "/signin",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<User> signin(@RequestBody EmailDTO emailDTO) {
+        System.out.println(emailDTO.getEmail());
+        String email = emailDTO.getEmail();
+
+        User findUser = userService.findUser(email);
+
+        return new ResponseEntity<>(findUser, HttpStatus.OK);
     }
 
     @PostMapping(value = "/signup",

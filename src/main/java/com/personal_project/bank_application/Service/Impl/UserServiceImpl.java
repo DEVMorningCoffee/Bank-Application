@@ -2,13 +2,14 @@ package com.personal_project.bank_application.Service.Impl;
 
 import com.personal_project.bank_application.DTO.UserDTO;
 import com.personal_project.bank_application.Exceptions.CustomException;
-import com.personal_project.bank_application.Exceptions.Handler.ExceptionHandler;
 import com.personal_project.bank_application.Mapper.UserMapper;
 import com.personal_project.bank_application.Repo.UserRepo;
 import com.personal_project.bank_application.Service.UserService;
 import com.personal_project.bank_application.User.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -26,5 +27,15 @@ public class UserServiceImpl implements UserService {
         User newUser = userRepo.save(user);
 
         return UserMapper.mapToUserDTO(newUser);
+    }
+
+    public User findUser(String email){
+        Optional<User> user = userRepo.findUserByEmail(email);
+
+        if(user.isEmpty()){
+            throw new CustomException("User not found");
+        }
+
+        return user.orElse(null);
     }
 }
