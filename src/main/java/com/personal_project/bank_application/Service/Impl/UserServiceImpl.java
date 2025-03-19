@@ -6,6 +6,7 @@ import com.personal_project.bank_application.Mapper.UserMapper;
 import com.personal_project.bank_application.Repo.UserRepo;
 import com.personal_project.bank_application.Service.UserService;
 import com.personal_project.bank_application.User.User;
+import com.personal_project.bank_application.Validate.Validate;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +16,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
+    private final Validate validate;
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-        // Make firstName and lastname required
-        if(userDTO.getFirstName() == null || userDTO.getLastName() == null){
-            throw new UserServiceException("First and last name are required");
-        }
+        validate.UserServiceSignUpValadation(userDTO);
 
         User user = UserMapper.maptoUser(userDTO);
         User newUser = userRepo.save(user);
