@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class Validate {
     private static final String OnlyLetterRegex = "^[a-zA-Z]*$";
 
-    public void UserServiceSignUpValadation(UserDTO userDTO) {
+    public void UserServiceSignUpValidation(UserDTO userDTO) {
         if(userDTO.getFirstName() == null || userDTO.getLastName() == null || userDTO.getFirstName().isEmpty() || userDTO.getLastName().isEmpty()){
             throw new UserServiceException("First name or Last null can't be null");
         }

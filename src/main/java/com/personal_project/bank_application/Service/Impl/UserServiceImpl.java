@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-        validate.UserServiceSignUpValadation(userDTO);
+        validate.UserServiceSignUpValidation(userDTO);
 
         User user = UserMapper.maptoUser(userDTO);
         User newUser = userRepo.save(user);
